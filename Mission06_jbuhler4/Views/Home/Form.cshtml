@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Movie Database Form";
+}
+
+@model Mission06_jbuhler4.Models.Movies
+
+<div class="text-center">
+    <h1 class="display-4">The Joel Hilton Film Database</h1>
+    <h2>Please enter your favorite movies into the form below to add them to the database.</h2>
+</div>
+<div>
+    <form method="post">
+        <label asp-for="category">Category:</label>
+        <input asp-for="category" /><br />
+        <label asp-for="title">Title:</label>
+        <input asp-for="title" /><br />
+        <label asp-for="year">Year:</label>
+        <input asp-for="year" /><br />
+        <label asp-for="director">Director:</label>
+        <input asp-for="director" /><br />
+        <label asp-for="rating">Rating:</label>
+        <select asp-for="rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br />
+        <label asp-for="edited">Edited:</label>
+        <select asp-for="edited">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
+        <label asp-for="lentTo">Lent To:</label>
+        <input asp-for="lentTo" /><br />
+        <label asp-for="notes">Notes:</label>
+        <input asp-for="notes" /><br />
+
+        <button type="submit">Submit Form</button>
+    </form>
+</div>
