@@ -14,6 +14,6 @@ namespace Mission06_jbuhler4.Models
             //Leave Blank for now
         }
 
-        public DbSet<Movies> movies { get; set; }
+        public DbSet<Movies> Movies { get; set; }
     }
 }

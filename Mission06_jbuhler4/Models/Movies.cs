@@ -8,6 +8,9 @@ namespace Mission06_jbuhler4.Models
 {
     public class Movies
     {
+        [Key]
+        [Required]
+        public int MovieID { get; set; }
         [Required]
         public string category { get; set; }
         [Required]
