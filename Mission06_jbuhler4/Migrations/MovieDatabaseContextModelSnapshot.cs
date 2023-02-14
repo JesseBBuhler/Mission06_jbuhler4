@@ -53,6 +53,44 @@ namespace Mission06_jbuhler4.Migrations
                     b.HasKey("MovieID");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieID = 1,
+                            category = "Action",
+                            director = "Christopher Nolan",
+                            edited = false,
+                            lentTo = "",
+                            notes = "I like this movie.",
+                            rating = "PG-13",
+                            title = "Inception",
+                            year = 2010
+                        },
+                        new
+                        {
+                            MovieID = 2,
+                            category = "Sci-fi",
+                            director = "Daniel Kwan and Daniel Scheinert",
+                            edited = true,
+                            lentTo = "",
+                            notes = "",
+                            rating = "R",
+                            title = "Everything Everywhere All at Once",
+                            year = 2022
+                        },
+                        new
+                        {
+                            MovieID = 3,
+                            category = "Adventure",
+                            director = "Joel Crawford",
+                            edited = false,
+                            lentTo = "Sean",
+                            notes = "The animation is to die for",
+                            rating = "PG",
+                            title = "Puss in Boots: The Last Wish",
+                            year = 2022
+                        });
                 });
 #pragma warning restore 612, 618
         }

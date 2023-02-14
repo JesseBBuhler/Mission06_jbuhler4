@@ -12,10 +12,12 @@ namespace Mission06_jbuhler4.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private MovieDatabaseContext _movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MovieDatabaseContext mdc)
         {
             _logger = logger;
+            _movieContext = mdc;
         }
 
         public IActionResult Index()
@@ -36,6 +38,8 @@ namespace Mission06_jbuhler4.Controllers
         [HttpPost]
         public IActionResult Form(Movies m)
         {
+            _movieContext.Add(m);
+            _movieContext.SaveChanges();
             return View("Thanks");
         }
 
