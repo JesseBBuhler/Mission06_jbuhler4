@@ -40,7 +40,7 @@ namespace Mission06_jbuhler4.Controllers
         {
             _movieContext.Add(m);
             _movieContext.SaveChanges();
-            return View("Thanks");
+            return View("Thanks", m);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
