@@ -12,18 +12,20 @@ namespace Mission06_jbuhler4.Models
         [Required]
         public int MovieID { get; set; }
         [Required]
-        public string category { get; set; }
+        public string Title { get; set; }
         [Required]
-        public string title { get; set; }
+        public int Year { get; set; }
         [Required]
-        public int year { get; set; }
+        public string Director { get; set; }
         [Required]
-        public string director { get; set; }
-        [Required]
-        public string rating { get; set; }
-        public bool edited { get; set; }
-        public string lentTo { get; set; }
+        public string Rating { get; set; }
+        public bool Edited { get; set; }
+        public string LentTo { get; set; }
         [MaxLength(25)]
-        public string notes { get; set; }
+        public string Notes { get; set; }
+        //build foreign key relationship
+        [Required]
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission06_jbuhler4.Models;
 using System;
@@ -11,12 +12,10 @@ namespace Mission06_jbuhler4.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private MovieDatabaseContext _movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, MovieDatabaseContext mdc)
+        public HomeController(MovieDatabaseContext mdc)
         {
-            _logger = logger;
             _movieContext = mdc;
         }
 
@@ -32,6 +31,7 @@ namespace Mission06_jbuhler4.Controllers
         [HttpGet]
         public IActionResult Form()
         {
+            ViewBag.Categories = _movieContext.Categories.ToList();
             return View();
         }
 
@@ -43,10 +43,13 @@ namespace Mission06_jbuhler4.Controllers
             return View("Thanks", m);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult Collection()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var movies = _movieContext.Movies
+                .Include(x=> x.Category)
+                .ToList();
+            return View(movies);
         }
     }
 }
