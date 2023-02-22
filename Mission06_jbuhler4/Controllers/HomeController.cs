@@ -38,9 +38,18 @@ namespace Mission06_jbuhler4.Controllers
         [HttpPost]
         public IActionResult Form(Movies m)
         {
-            _movieContext.Add(m);
-            _movieContext.SaveChanges();
-            return View("Thanks", m);
+            if(ModelState.IsValid)
+            {
+                _movieContext.Add(m);
+                _movieContext.SaveChanges();
+                return View("Thanks", m);
+            } 
+            else
+            {
+                ViewBag.Categories = _movieContext.Categories.ToList();
+                return View(m);
+            }
+            
         }
 
         [HttpGet]
@@ -50,6 +59,28 @@ namespace Mission06_jbuhler4.Controllers
                 .Include(x=> x.Category)
                 .ToList();
             return View(movies);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Categories = _movieContext.Categories.ToList();
+
+            var movie = _movieContext.Movies.Single(x => x.MovieID == id);
+
+            return View("Form", movie );
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movies m)
+        {
+            _movieContext.Update(m);
+            _movieContext.SaveChanges();
+            return RedirectToAction("Collection");
+        }
+        public IActionResult Delete()
+        {
+            return View();
         }
     }
 }

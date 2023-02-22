@@ -24,7 +24,7 @@
         @foreach (var x in Model)
             {
         <tr>
-            <td>edit</td>
+            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieID">edit</a></td>
             <td>@x.Category.CategoryName</td>
             <td>@x.Title</td>
             <td>@x.Year</td>
@@ -33,7 +33,7 @@
             <td>@x.Edited</td>
             <td>@x.LentTo</td>
             <td>@x.Notes</td>
-            <td>delete</td>
+            <td><a asp-controller="Home" asp-action="Delete">delete</a></td>
         </tr>
             }
     </tbody>
