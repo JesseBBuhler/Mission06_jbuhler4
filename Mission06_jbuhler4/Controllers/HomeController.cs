@@ -78,9 +78,19 @@ namespace Mission06_jbuhler4.Controllers
             _movieContext.SaveChanges();
             return RedirectToAction("Collection");
         }
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            return View();
+            var movie = _movieContext.Movies.Single(x => x.MovieID == id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Movies m)
+        {
+            _movieContext.Movies.Remove(m);
+            _movieContext.SaveChanges();
+            return RedirectToAction("Collection");
         }
     }
 }
