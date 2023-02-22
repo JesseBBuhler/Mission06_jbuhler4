@@ -32,7 +32,9 @@ namespace Mission06_jbuhler4.Controllers
         public IActionResult Form()
         {
             ViewBag.Categories = _movieContext.Categories.ToList();
-            return View();
+            var movie = new Movies();
+
+            return View("Form", movie);
         }
 
         [HttpPost]
@@ -40,6 +42,7 @@ namespace Mission06_jbuhler4.Controllers
         {
             if(ModelState.IsValid)
             {
+
                 _movieContext.Add(m);
                 _movieContext.SaveChanges();
                 return View("Thanks", m);
